@@ -18,19 +18,22 @@ export const AxiosPosts = () => {
     fetchPosts()
   }, [])
 
+  if(error) {
+    return (
+      <p>Error: {error}</p>
+    )
+  }
+
   /** Fetch is javascript native */
   return (
     <div>
       <h2>Posts (Axios API)</h2>
-      {error ? ( // TODO: refactor this validation
-        <p>Error: {error}</p>) : (
-            posts.map(post => (
-              <div key={post.id}>
-                <h3>{post.title}</h3>
-                <span>{post.body}</span>
-              </div>
-            ))
-          )}
+        {posts.map(post => (
+          <div key={post.id}>
+            <h3>{post.title}</h3>
+            <span>{post.body}</span>
+          </div>
+        ))}
     </div>
   )
 }
